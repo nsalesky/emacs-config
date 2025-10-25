@@ -6,3 +6,5 @@ auto-save-list/
 recentf
 projects
 /org-roam.db
+/.org-id-locations
+/bookmarks

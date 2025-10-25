@@ -352,23 +352,23 @@
 ;;; Python
 
 (use-package python-mode
-  :ensure nil
-  :hook ((python-mode python-ts-mode) . eglot-ensure))
+  :ensure nil)
+;; :hook ((python-mode python-ts-mode) . eglot-ensure))
 
 (use-package flymake-ruff
-  :ensure t
-  :hook ((python-mode python-ts-mode) . eglot-ensure))
+  :ensure t)
+;; :hook ((python-mode python-ts-mode) . eglot-ensure))
 
 ;;; Nix
 (use-package nix-mode
-  :ensure t
-  :hook
-  (nix-mode . eglot-ensure))
+  :ensure t)
+;; :hook
+;; (nix-mode . eglot-ensure))
 
 ;;; C
 (use-package c-mode
   :ensure nil
-  :hook (c-mode . eglot-ensure)
+  ;; :hook (c-mode . eglot-ensure)
   :custom
   (c-default-style "linux")
   (c-basic-offset 4))
