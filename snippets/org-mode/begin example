@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: begin example
+# key: >begexp
+# --
+#+BEGIN_EXAMPLE

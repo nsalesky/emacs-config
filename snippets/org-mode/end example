@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: end example
+# key: >endexp
+# --
+#+END_EXAMPLE

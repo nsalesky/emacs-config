@@ -56,6 +56,12 @@
   (visible-bell t)
   (ring-bell-function 'ignore))
 
+;; Imenu
+(use-package imenu
+  :ensure nil
+  :custom
+  (imenu-auto-rescan t))
+
 ;; Direnv
 
 (use-package direnv
@@ -235,13 +241,37 @@
   (yas-global-mode))
 
 ;;; Notes
+(use-package org
+  :ensure nil
+  :hook
+  (org . org-indent-mode)
+  :custom
+  (org-imenu-depth 7))
+
 (use-package howm
+  :disabled
   :ensure t
   :init
-  (setq
-   howm-directory "~/Documents/howm"
-   howm-file-name-format "%Y-%m-%d-%H%M%S.md"
-   howm-view-title-header "#"))
+  (require 'howm-org)
+  :custom
+  (howm-directory "~/Documents/howm")
+  (howm-follow-theme t))
+
+(use-package org-roam
+  :ensure t
+  :custom
+  (org-roam-directory (file-truename "~/Documents/org-roam"))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
+         ;; Dailies
+         ("C-c n j" . org-roam-dailies-capture-today))
+  :config
+  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  (org-roam-db-autosync-mode))
+
 
 (use-package markdown-mode
   :ensure t
@@ -346,7 +376,6 @@
 ;;; Haskell
 (use-package haskell-mode
   :ensure t)
-
 
 ;; Terminal emulator
 
