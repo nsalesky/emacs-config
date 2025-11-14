@@ -56,6 +56,22 @@
   (visible-bell t)
   (ring-bell-function 'ignore))
 
+(use-package evil
+  :ensure t
+  :custom
+  (evil-want-keybinding nil)
+  (evil-want-C-u-scroll t)
+  :config
+  (evil-mode)
+  (evil-set-leader 'motion (kbd "SPC"))
+  (defun evil-leader-define-global (keybind function)
+    (evil-define-key 'normal 'global (kbd keybind) function)))
+
+(use-package evil-collection
+  :ensure t
+  :hook
+  (after-init . evil-collection-init))
+
 ;; Imenu
 (use-package imenu
   :ensure nil
@@ -98,7 +114,12 @@
   ("M-s r" . consult-ripgrep)
   ("M-s l" . consult-line)
   ("M-g i" . consult-imenu)
-  ("C-x C-r" . consult-recent-file))
+  ("C-x C-r" . consult-recent-file)
+  :config
+  (evil-leader-define-global "<leader>fs" #'consult-ripgrep)
+  (evil-leader-define-global "<leader>fb" #'consult-buffer)
+  (evil-leader-define-global "<leader>fi" #'consult-imenu)
+  (evil-leader-define-global "<leader>fg" #'consult-goto-line))
 
 (use-package marginalia
   :ensure t
@@ -114,6 +135,24 @@
   :ensure nil
   :config
   (recentf-mode))
+
+;;; Projects and workspaces
+(use-package project
+  :ensure nil
+  :config
+  (evil-leader-define-global "<leader>pp" #'project-switch-project)
+  (evil-leader-define-global "<leader>pf" #'project-find-file)
+  (evil-leader-define-global "<leader>pb" #'project-switch-to-buffer))
+
+(use-package emacs
+  :ensure nil
+  :config
+  (setq tab-bar-format '(tab-bar-format-history tab-bar-format-tabs-groups tab-bar-separator tab-bar-format-add-tab)))
+
+(use-package ace-window
+  :ensure t
+  :bind
+  ("M-o" . ace-window))
 
 ;;; User interface
 
@@ -246,7 +285,14 @@
   :hook
   (org . org-indent-mode)
   :custom
-  (org-imenu-depth 7))
+  (org-imenu-depth 7)
+  (org-confirm-babel-evaluate nil)
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (shell . t)
+     (python . t))))
 
 (use-package howm
   :disabled
@@ -365,6 +411,11 @@
 ;; :hook
 ;; (nix-mode . eglot-ensure))
 
+;;; PHP
+(use-package php-ts-mode
+  :ensure nil
+  :mode "\\.php\\'")
+
 ;;; C
 (use-package c-mode
   :ensure nil
@@ -373,11 +424,41 @@
   (c-default-style "linux")
   (c-basic-offset 4))
 
+;;; Yaml
+(use-package yaml-ts-mode
+  :ensure nil
+  :preface
+  (defun ns/setup-yaml ()
+    (setq-local tab-width 2
+                tab-stop-list (number-sequence 2 200 2)))
+  :mode "\\.ya?ml\\'"
+  :hook (yaml-ts-mode . ns/setup-yaml))
+
+;;; Go
+(use-package go-ts-mode
+  :ensure nil
+  :mode "\\.go\\'")
+
 ;;; Haskell
 (use-package haskell-mode
   :ensure t)
+
 
 ;; Terminal emulator
 
 (use-package eat
   :ensure t)
+
+;; Utilities
+
+(use-package dired
+  :ensure nil
+  :custom
+  (dired-dwim-target t))
+
+(use-package verb
+  :ensure t
+  :hook (org-mode . verb-mode)
+  :config
+  (with-eval-after-load 'org
+    (define-key org-mode-map (kbd "C-c C-r") verb-command-map)))
