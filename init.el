@@ -329,7 +329,20 @@
 (use-package magit
   :ensure t)
 
-;; Programming
+(use-package diff-hl
+  :ensure t
+  :hook
+  (after-init . global-diff-hl-mode)
+  (magit-post-refresh . diff-hl-magit-post-refresh)
+  :custom
+  (diff-hl-show-hunk-function #'diff-hl-show-hunk-inline)
+  :config
+  (evil-define-key 'normal
+    diff-hl-show-hunk-inline-transient-mode-map
+    "q"
+    #'diff-hl-show-hunk-inline-hide))
+
+;; Programing
 
 (use-package eglot
   :ensure nil
@@ -448,6 +461,15 @@
 
 (use-package eat
   :ensure t)
+
+(use-package vterm
+  :ensure nil ; managed by NixOS
+  :config
+  (defun new-vterm ()
+    "Create a new vterm session."
+    (interactive)
+    (call-interactively #'vterm)
+    (rename-uniquely)))
 
 ;; Utilities
 
