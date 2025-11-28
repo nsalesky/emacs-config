@@ -410,9 +410,9 @@
 
 ;;; Python
 
-(use-package python-mode
-  :ensure nil)
-;; :hook ((python-mode python-ts-mode) . eglot-ensure))
+;; (use-package python-mode
+;;   :ensure nil)
+;; ;; :hook ((python-mode python-ts-mode) . eglot-ensure))
 
 (use-package flymake-ruff
   :ensure t)
