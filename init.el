@@ -463,7 +463,7 @@
   :ensure t)
 
 (use-package vterm
-  :ensure nil ; managed by NixOS
+  :ensure t
   :config
   (defun new-vterm ()
     "Create a new vterm session."
