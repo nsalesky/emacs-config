@@ -159,8 +159,7 @@
 (use-package emacs
   :ensure nil
   :hook
-  ;; Show line numbers
-  (prog-mode . display-line-numbers-mode)
+  (prog-mode . display-line-numbers-mode) ; Show line numbers
   :custom
   (idle-update-delay 1.0) ; Update the UI a bit slower
   (use-short-answers t) ; use "y"/"n" instead of "yes"/"no"
@@ -284,6 +283,7 @@
   :ensure nil
   :hook
   (org . org-indent-mode)
+  (org . visual-line-mode)
   :custom
   (org-imenu-depth 7)
   (org-confirm-babel-evaluate nil)
