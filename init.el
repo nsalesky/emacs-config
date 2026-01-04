@@ -282,8 +282,8 @@
 (use-package org
   :ensure nil
   :hook
-  (org . org-indent-mode)
-  (org . visual-line-mode)
+  (org-mode . org-indent-mode)
+  (org-mode . visual-line-mode)
   :custom
   (org-imenu-depth 7)
   (org-confirm-babel-evaluate nil)
