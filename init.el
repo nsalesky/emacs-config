@@ -294,6 +294,12 @@
      (shell . t)
      (python . t))))
 
+(use-package org-download
+  :ensure t
+  :hook
+  (dired-mode . org-download-enable)
+  (org-mode . org-download-enable))
+
 (use-package howm
   :disabled
   :ensure t

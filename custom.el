@@ -11,7 +11,13 @@
                 diff-hl-mode direnv eat evil evil-collection
                 exec-path-from-shell flymake-ruff haskell-mode howm
                 magit marginalia markdown-mode mwim nix-mode orderless
-                org-roam rainbow-delimiters verb vertico yasnippet)))
+                org-download org-roam rainbow-delimiters verb vertico
+                yasnippet))
+ '(safe-local-variable-values
+   '((eval setq-local org-download-image-dir
+           (expand-file-name "images" (project-root (project-current))))
+     (org-download-image-dir expand-file-name "images"
+                             (project-root (project-current))))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
