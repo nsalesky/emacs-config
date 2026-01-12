@@ -284,6 +284,7 @@
   :hook
   (org-mode . org-indent-mode)
   (org-mode . visual-line-mode)
+  (org-mode . org-display-inline-images)
   :custom
   (org-imenu-depth 7)
   (org-confirm-babel-evaluate nil)
