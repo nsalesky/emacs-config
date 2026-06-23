@@ -156,16 +156,22 @@
 
 ;;; User interface
 
+(defun ns/setup-frame-ui ()
+  (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 140)
+  (set-frame-parameter nil 'alpha 95))
+
+
 (use-package emacs
   :ensure nil
   :hook
   (prog-mode . display-line-numbers-mode) ; Show line numbers
+  ;;(after-make-frame-functions . ns/setup-frame-ui)
   :custom
   (idle-update-delay 1.0) ; Update the UI a bit slower
-  (use-short-answers t) ; use "y"/"n" instead of "yes"/"no"
-  :config
-  ;; Configure fonts
-  (set-face-attribute 'default nil :font "JetBrainsMono Nerd Font" :height 140))
+  (use-short-answers t)) ; use "y"/"n" instead of "yes"/"no"
+;; :config
+;; (unless (daemonp)
+;;   (ns/setup-frame-ui)))
 
 (use-package catppuccin-theme
   :ensure t
