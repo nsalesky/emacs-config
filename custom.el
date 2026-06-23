@@ -7,12 +7,16 @@
    '("7bea8c8136b95e40a3def71cc2953e29d2553078ba1730d8262f1dccc586fbab"
      default))
  '(package-selected-packages
-   '(ace-window apheleia avy catppuccin-theme consult corfu diff-hl
-                diff-hl-mode direnv eat evil evil-collection
-                exec-path-from-shell flymake-ruff haskell-mode howm
-                magit marginalia markdown-mode mwim nix-mode orderless
-                org-download org-roam rainbow-delimiters verb vertico
-                yasnippet))
+   '(ace-window apheleia avy catppuccin-theme compat consult corfu
+                diff-hl diff-hl-mode direnv doom-modeline eat
+                editorconfig eglot eldoc erc evil evil-collection
+                exec-path-from-shell faceup flymake flymake-ruff
+                gnu-elpa-keyring-update haskell-mode howm idlwave
+                jsonrpc magit marginalia markdown-mode mwim nix-mode
+                orderless org org-download org-roam peg project python
+                rainbow-delimiters tablist track-changes tramp
+                transient verb verilog-mode vertico vterm which-key
+                window-tool-bar yasnippet))
  '(safe-local-variable-values
    '((eval setq-local org-download-image-dir
            (expand-file-name "images" (project-root (project-current))))

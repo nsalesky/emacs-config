@@ -5,6 +5,7 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 (package-refresh-contents)
+(setq package-install-upgrade-built-in t)
 
 ;;; Set up PATH
 (when (memq window-system '(mac ns x))
@@ -184,6 +185,11 @@
   :ensure t
   :hook
   (prog-mode . rainbow-delimiters-mode))
+
+(use-package doom-modeline
+  :ensure t
+  :init
+  (doom-modeline-mode 1))
 
 ;;; Indent and formatting
 
